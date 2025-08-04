@@ -1,6 +1,4 @@
-# 👋 Hi There
-
-This organization is focused on researching how to leverage AI to automate the case investigation process within a Security Operations Center (SOC). It explores the integration of widely-used open-source SOC technologies for incident response.
+An on-premise software stack aimed to automate common SOC investigation tasks with AI agents, specifically by performing automated investigations in Security Information and Event Management (SIEM) systems. This software stack ingests security case information, generates investigation tasks, and automatically perform relevant investigations in SIEM. Models used including LLM (for generation tasks) and classifier model (for anomaly detection).
 
 ---
 
@@ -24,6 +22,16 @@ This organization is focused on researching how to leverage AI to automate the c
 - Analyzes case data to generate SIEM queries
 - Helps SOC analysts filter relevant logs, reducing manual workload
 - Acts as a knowledge base, potentially uncovering missed evidence
+
+---
+
+## Supported platforms
+
+### SOAR
+- [The Hive](https://strangebee.com/)
+
+### SIEM
+- [Wazuh](https://wazuh.com/)
 
 ---
 
