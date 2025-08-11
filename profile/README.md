@@ -1,4 +1,4 @@
-An on-premise software stack aimed to automate common SOC investigation tasks with AI agents, specifically by performing automated investigations in Security Information and Event Management (SIEM) systems. This software stack ingests security case information, generates investigation tasks, and automatically perform relevant investigations in SIEM. Models used including LLM (for generation tasks) and classifier model (for anomaly detection).
+An on-premise software stack aimed to automate common SOC investigation tasks with AI agents, specifically by performing automated investigations in Security Information and Event Management (SIEM) systems. This software stack ingests security case information, generates investigation tasks, and automatically perform relevant investigations in SIEM. Models used including LLM for generation tasks and custom-designed classifier model for security event correlation.
 
 ---
 
@@ -37,5 +37,4 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 
 ## Tentative Goals
 
-- Train an event classifier model to distinguish **true positives** from **false positives**
 - Develop a de-identification component to remove sensitive artifacts from case data and requests
