@@ -20,7 +20,8 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 
 ### Automatic Investigation
 - Analyzes case data to generate SIEM queries
-- Helps SOC analysts filter relevant logs, reducing manual workload
+- Automatically queries the SIEM and evaluates relevance of search results to the investigation
+- Helps SOC analysts quickly locate pertinent logs, minimizing manual effort
 - Acts as a knowledge base, potentially uncovering missed evidence
 
 ---
