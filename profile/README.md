@@ -37,5 +37,5 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 ---
 
 ## Tentative Goals
-- Develop pipeline for web search and retrieval augmented generation for LLM agents
-- Develop a de-identification component to remove sensitive artifacts from case data and requests
+- Training reasoning models with cybersecurity knowledge, adapting them to SOC tasks.
+- Training SIEM query generation with GRPO.
