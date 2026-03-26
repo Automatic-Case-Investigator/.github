@@ -39,8 +39,10 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 ---
 
 ## Tentative Goals
-- Training reasoning models with cybersecurity knowledge, adapting them to SOC tasks.
-- Training SIEM query generation with GRPO.
+- Developing a generalized scheme allowing human SOC analysts to establish baselines in their organizational settings
+- Developing a pipeline to retrieve relevant SIEM configurations to improve generation quality (Eg. alert rule sets)
+- Developing a pipeline to generate incident response reports based on automatic investigation results
+
 
 ## Demo
 <img width="1768" height="912" alt="cases" src="https://github.com/user-attachments/assets/eabe5277-a33c-474a-a945-99ca5b39bb4a" />
