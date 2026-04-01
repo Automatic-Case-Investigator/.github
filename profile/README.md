@@ -20,10 +20,9 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 - Experiment showed continued pretrained model consistently outperforms openai/gpt-oss:20b in investigation planning: https://github.com/Automatic-Case-Investigator/ACI_Training_Experiment
 
 ### Automatic Investigation
-- Analyzes case data to generate SIEM queries
+- Analyzes case data and available configurations (Eg. detection rulesets) to generate precise SIEM queries
 - Iteratively queries the SIEM and evaluates potential Indicators of Compromise (IoC)
 - Helps SOC analysts quickly locate pertinent logs, minimizing manual effort
-- Acts as a knowledge base, potentially uncovering missed evidence
 
 ---
 
@@ -42,7 +41,6 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 - Developing workflow for automatically investigate cases when they are added to SOAR
 - Add settings to allow users to use external models
 - Developing a generalized scheme allowing human SOC analysts to establish baselines in their organizational settings
-- Developing a pipeline to retrieve relevant SIEM configurations to improve generation quality (Eg. alert rule sets)
 - Developing a pipeline to generate incident response reports based on automatic investigation results
 
 
