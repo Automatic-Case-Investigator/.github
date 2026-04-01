@@ -39,6 +39,8 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 ---
 
 ## Tentative Goals
+- Developing workflow for automatically investigate cases when they are added to SOAR
+- Add settings to allow users to use external models
 - Developing a generalized scheme allowing human SOC analysts to establish baselines in their organizational settings
 - Developing a pipeline to retrieve relevant SIEM configurations to improve generation quality (Eg. alert rule sets)
 - Developing a pipeline to generate incident response reports based on automatic investigation results
