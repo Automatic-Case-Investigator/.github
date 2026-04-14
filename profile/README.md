@@ -38,11 +38,13 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 ---
 
 ## Tentative Goals
-- Developing workflow for automatically investigate cases when they are added to SOAR
+- Developing workflow for automatically investigating cases when they are added to SOAR
+- Developing a pipeline to generate incident response reports based on automatic investigation results
+- Implement a live investigation mode that allows users to observe the investigation process as it happens
+- Implement dynamic schema enrichment to retrieve additional field context before generating queries, improving query quality and relevance
 - Add settings to allow users to use external models
 - Developing a generalized scheme allowing human SOC analysts to establish baselines in their organizational settings
-- Developing a pipeline to generate incident response reports based on automatic investigation results
-
+- Perform an APT style adversarial emulation for testing
 
 ## Demo
 <img width="1768" height="912" alt="cases" src="https://github.com/user-attachments/assets/eabe5277-a33c-474a-a945-99ca5b39bb4a" />
