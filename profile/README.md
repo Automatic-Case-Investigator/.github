@@ -24,6 +24,10 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 - Iteratively queries the SIEM and evaluates potential Indicators of Compromise (IoC)
 - Helps SOC analysts quickly locate pertinent logs, minimizing manual effort
 
+### Investigation Reporting
+- Correlate findings from multiple investigation activities to obtain a holistic perspective on the endpoint activities
+- Integrate results from multiple investigation efforts into a cohesive report, backed with real security events as evidences. 
+
 ---
 
 ## Supported platforms
@@ -39,7 +43,6 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 
 ## Tentative Goals
 - Developing workflow for automatically investigating cases when they are added to SOAR
-- Developing a pipeline to generate incident response reports based on automatic investigation results
 - Implement a live investigation mode that allows users to observe the investigation process as it happens
 - Implement dynamic schema enrichment to retrieve additional field context before generating queries, improving query quality and relevance
 - Add settings to allow users to use external models
