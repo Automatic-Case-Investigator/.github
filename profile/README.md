@@ -26,7 +26,9 @@ An on-premise software stack aimed to automate common SOC investigation tasks wi
 
 ### Investigation Reporting
 - Correlate findings from multiple investigation activities to obtain a holistic perspective on the endpoint activities
-- Integrate results from multiple investigation efforts into a cohesive report, backed with real security events as evidences. 
+- Integrate results from multiple investigation efforts into a cohesive report, backed with real security events as evidences.
+
+The above features can be autonomously executed on receiving new case on the SOAR platform, minimizing human effort.
 
 ---
 
