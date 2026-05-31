@@ -6,15 +6,41 @@ An on-premise AI stack that automates SOC investigation workflows. ACI ingests s
 
 ## The Problem
 
-A single attacker can trigger a security incident, but effective incident response demands multiple skilled analysts working in parallel. As alert volumes scale, three compounding problems emerge:
+### The Asymmetry Between Attack and Defense
 
-| Problem | Impact |
+A single attacker can trigger a security incident that demands the simultaneous attention of many skilled defenders. This asymmetry is structural: launching an attack is a concentrated act, while investigating one is a distributed, multi-disciplinary effort. A single intrusion can span initial access, credential abuse, lateral movement, and data exfiltration — each phase leaving traces in different log sources, requiring different domain expertise to interpret. No individual analyst covers all of it with equal depth.
+
+### The Scale Problem
+
+Modern endpoints, network devices, and applications continuously stream telemetry into a SIEM. A mid-sized organization can produce millions of log events per day. When an alert fires, the relevant evidence for that specific incident is a small fraction of that volume — but identifying which events are relevant requires iterative, context-driven querying. Analysts cannot scan raw logs at scale. Without tooling that can execute many targeted queries and filter results automatically, investigations become sampling exercises, and evidence gets missed.
+
+### The Investigative Process Is Inherently Multi-Step
+
+A security investigation is not a lookup — it is a recursive process. A suspicious process execution leads to a query for child processes. That reveals a network connection, which leads to a query for other hosts that contacted the same destination. Those hosts surface additional artifacts, which require threat intelligence lookups. Each step produces new context that shapes the next query. Performing this loop manually is time-intensive, requires sustained attention, and is difficult to hand off between analysts mid-investigation without losing context.
+
+### SIEM Query Expertise Is a Bottleneck
+
+Writing precise SIEM queries demands familiarity with the platform's query language, the organization's log schema, and the specific detection logic in use (e.g., Wazuh rulesets). This expertise is not uniformly distributed across a SOC team. Junior analysts often cannot construct queries independently, senior analysts become the bottleneck, and critical investigation time is lost waiting for query review. Any system that can generate accurate, context-aware queries from a natural-language investigation task removes this bottleneck.
+
+### Documentation and Knowledge Transfer
+
+Incident documentation is consistently the lowest-priority task during an active investigation and the first one dropped under time pressure. Yet the investigation report is the primary artifact from which lessons are extracted, compliance requirements are satisfied, and future analysts learn. When reports are written under pressure, evidence citations are often incomplete or missing. And when a senior analyst who carried institutional knowledge of past incidents leaves the team, that knowledge leaves with them.
+
+### The Data Sovereignty Constraint
+
+Sending internal security logs to external AI services is not acceptable in most regulated environments. Log data contains sensitive operational detail — user activity, network topology, internal hostnames, credential usage patterns. Organizations in finance, healthcare, government, and critical infrastructure require that log data remain entirely on-premise. This rules out cloud-hosted AI investigation tools and creates a hard requirement for a self-hosted inference stack.
+
+### Summary of Requirements
+
+| Requirement | Implication for ACI |
 |---|---|
-| **Information fatigue** | Analysts reviewing thousands of log lines risk missing critical evidence |
-| **Limited specialization** | No single analyst has deep expertise across every attack surface |
-| **High manual effort** | Correlating events across a SIEM is slow and repetitive by nature |
-
-ACI addresses all three by delegating the log-analysis and correlation work to AI agents, freeing analysts to focus on decisions that require human judgment.
+| Investigations require multi-step, adaptive querying | Agent must iterate — each query informs the next |
+| Relevant events are sparse within high-volume log streams | Relevancy filtering must run per-query before passing results to the AI |
+| SIEM queries require platform and schema expertise | Query generation must consume SIEM configs (rulesets, schema) as context |
+| Findings must be traceable to real log events | Every claim in a report must be grounded in a retrieved SIEM event |
+| Investigation must begin immediately on case creation | SOAR integration must trigger the pipeline autonomously |
+| Logs cannot leave the organization's infrastructure | Inference must run fully on-premise via a self-hosted model server |
+| Analyst capacity is limited and unevenly skilled | Automation must handle the full investigation loop, not just assist |
 
 ---
 
@@ -31,13 +57,13 @@ ACI is composed of three deployable services:
                          │ REST / JWT
 ┌────────────────────────▼────────────────────────────────┐
 │                    ACI Backend                          │
-│              Django · Redis · Pebble                    │
+│               Django · Redis · RQ                       │
 │  SOAR/SIEM integration, job scheduling, connectors      │
 └──────┬──────────────────┬──────────────────┬────────────┘
        │ REST             │ REST             │ REST
 ┌──────▼──────┐  ┌────────▼───────────────┐ │
 │    SOAR     │  │    ACI AI Backend      │ │
-│  (The Hive) │  │  Django · Ollama       │ │
+│  (The Hive) │  │   Django · vllm        │ │
 │             │  │  Query gen, report gen │ │
 └─────────────┘  │  relevancy filtering   │ │
                  └────────────────────────┘ │
@@ -50,8 +76,8 @@ ACI is composed of three deployable services:
 
 | Component | Role |
 |---|---|
-| [ACI Backend](./ACI_Backend) | Coordinates investigations, manages SOAR/SIEM connections, schedules async jobs, dispatches reports |
-| [ACI AI Backend](./ACI_AI_Backend) | Runs the AI inference pipeline — task generation, SIEM query generation, relevancy filtering, report writing |
+| [ACI Backend](./ACI_Backend) | Coordinates investigations, manages SOAR/SIEM connections, schedules async jobs via RQ, dispatches reports |
+| [ACI AI Backend](./ACI_AI_Backend) | Runs the AI inference pipeline via vllm — task generation, SIEM query generation, relevancy filtering, report writing |
 | [ACI Dashboard](./ACI_Dashboard) | Web UI for configuring platforms, browsing cases, triggering investigations, and monitoring jobs |
 
 ---
@@ -147,7 +173,6 @@ After all three services are running, open the Dashboard and navigate to **Setti
 - **Live investigation view** — stream agent reasoning and intermediate query results to the UI as the investigation runs
 - **External model support** — allow users to point ACI at any OpenAI-compatible inference endpoint instead of the bundled Ollama stack
 - **Adversarial validation** — run an APT-style emulation against a test environment and measure detection and reporting accuracy end-to-end
-
 
 ## Demo
 <img width="1355" height="675" alt="Screenshot 2026-05-21 at 11 18 55 AM" src="https://github.com/user-attachments/assets/1ff8fd0c-8ef5-4150-add1-0485026633d6" />
