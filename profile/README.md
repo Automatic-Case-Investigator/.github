@@ -1,6 +1,6 @@
 # ACI — Automatic Case Investigator
 
-An on-premise AI stack that automates SOC investigation workflows. ACI ingests security case data from a SOAR platform, performs iterative log analysis in a SIEM, enriches findings with threat intelligence, and produces a written investigation report — with no analyst in the loop.
+An on-premise AI-driven SOC investigation engine. ACI ingests security case data from a SOAR platform, performs iterative log analysis in a SIEM, enriches findings with threat intelligence, and produces a written investigation report — with no analyst in the loop.
 
 ---
 
