@@ -192,4 +192,6 @@ After all three services are running, open the Dashboard and navigate to **Setti
 
 <img width="1357" height="676" alt="Screenshot 2026-05-21 at 11 22 57 AM" src="https://github.com/user-attachments/assets/020ef38c-77f6-4102-99d3-8f0f175744ae" />
 
+<img width="1465" height="677" alt="Screenshot 2026-06-03 at 5 25 58 PM" src="https://github.com/user-attachments/assets/918e2d75-e3f9-4036-991c-f7e73503a6c6" />
+
 <img width="744" height="577" alt="Screenshot 2026-05-28 at 5 04 22 PM" src="https://github.com/user-attachments/assets/4b987a77-c05a-4203-b3b0-ab29bb6ab094" />
