@@ -118,6 +118,10 @@ After all activities complete, ACI correlates findings across tasks to produce a
 
 All of the above can run fully autonomously. When a new case is created in the SOAR platform, ACI detects it, runs the full investigation pipeline, and delivers the report — with no human trigger required.
 
+### Live Copilot Mode
+
+Analysts watch the agents investigate in real time via the UI. Analysts can inject directional prompt guidance mid-investigation to steer the agent down specific forensic paths.
+
 ---
 
 ## Supported Platforms
@@ -170,7 +174,6 @@ After all three services are running, open the Dashboard and navigate to **Setti
 
 ## Roadmap
 
-- **Live investigation view** — stream agent reasoning and intermediate query results to the UI as the investigation runs
 - **External model support** — allow users to point ACI at any OpenAI-compatible inference endpoint instead of the bundled Ollama stack
 - **Adversarial validation** — run an APT-style emulation against a test environment and measure detection and reporting accuracy end-to-end
 
